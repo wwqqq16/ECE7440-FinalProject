@@ -8,9 +8,9 @@ A = [0 1 0;
 
 B = [0; 0; 3];   % Note the 3 in B(3) from the problem equation
 
-% --------------------------------------------------
+
 % Step 2: Define the cost matrices Q and R
-% --------------------------------------------------
+
 Q = diag([2, 4, 1]);  % State weighting matrix
 R = 2;                % Input weighting scalar
 
