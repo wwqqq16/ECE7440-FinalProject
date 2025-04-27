@@ -65,7 +65,7 @@ x0 = [10; 0];
 % (5a) Derive optimal control u(t)
 [t1, x1] = ode45(@(t,x) A*x + B*(-1), [0 5], x0);
 
-% (修正后的) 找到最近的 switching curve
+switching curve
 dist_pos = vecnorm([x1(:,1) - interp1(t_switch, x1_switch_pos, t1, 'linear', 'extrap'), ...
                     x1(:,2) - interp1(t_switch, x2_switch_pos, t1, 'linear', 'extrap')], 2, 2);
 dist_neg = vecnorm([x1(:,1) - interp1(t_switch, x1_switch_neg, t1, 'linear', 'extrap'), ...
@@ -73,7 +73,6 @@ dist_neg = vecnorm([x1(:,1) - interp1(t_switch, x1_switch_neg, t1, 'linear', 'ex
 [~, idx_switch] = min(min(dist_pos, dist_neg));
 t_switch_point = t1(idx_switch);
 
-% 判断是否需要第二段积分
 if abs(t1(idx_switch) - 5) < 1e-6
     % Already at final time
     t_opt = t1(1:idx_switch);
